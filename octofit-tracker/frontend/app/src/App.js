@@ -1,24 +1,14 @@
 
 
-import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Activities from './components/Activities';
-import Leaderboard from './components/Leaderboard';
-import Teams from './components/Teams';
-import Users from './components/Users';
-import Workouts from './components/Workouts';
-
 
 function App() {
-  // Ensure environment variable is available for all components
   console.log("REACT_APP_CODESPACE_NAME:", process.env.REACT_APP_CODESPACE_NAME);
   return (
     <div className="App">
       <Navbar bg="primary" variant="dark" expand="lg" className="mb-4 shadow">
         <Container>
           <Navbar.Brand as={Link} to="/">
+            <img src={process.env.PUBLIC_URL + '/octofitapp-small.png'} alt="Octofit Logo" className="octofit-logo" />
             <span className="fw-bold">Octofit Tracker</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="main-navbar-nav" />
@@ -29,6 +19,10 @@ function App() {
               <Nav.Link as={Link} to="/teams" className="fw-semibold">Teams</Nav.Link>
               <Nav.Link as={Link} to="/users" className="fw-semibold">Users</Nav.Link>
               <Nav.Link as={Link} to="/workouts" className="fw-semibold">Workouts</Nav.Link>
+            </Nav>
+            <Nav className="ms-auto">
+              <Nav.Link as={Link} to="/" className="fw-semibold">Home</Nav.Link>
+              <Nav.Link href="#about" className="fw-semibold">About</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -43,6 +37,24 @@ function App() {
           <Route path="/" element={<Activities />} />
         </Routes>
       </Container>
+      {/* Example Modal for demonstration */}
+      <div className="modal fade" id="infoModal" tabIndex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="infoModalLabel">Welcome to Octofit Tracker</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+              <p>This is a demo modal using Bootstrap styles. You can add more modals for forms or info popups.</p>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

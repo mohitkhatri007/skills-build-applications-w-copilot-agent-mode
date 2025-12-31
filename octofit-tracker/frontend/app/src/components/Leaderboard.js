@@ -5,10 +5,9 @@ import Card from 'react-bootstrap/Card';
 const Leaderboard = () => {
   const [leaders, setLeaders] = useState([]);
   const API_URL = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
-  console.log("Leaderboard API_URL:", API_URL);
+  console.log('Leaderboard API_URL:', API_URL);
 
   useEffect(() => {
-    console.log('Leaderboard API_URL:', API_URL);
     fetch(API_URL)
       .then(res => res.json())
       .then(data => {
@@ -16,7 +15,7 @@ const Leaderboard = () => {
         console.log('Fetched leaderboard:', data);
       })
       .catch(err => console.error('Error fetching leaderboard:', err));
-  }, [endpoint]);
+  }, [API_URL]);
 
   return (
     <Card className="mb-4 shadow">
@@ -28,6 +27,7 @@ const Leaderboard = () => {
               <th>#</th>
               <th>Name</th>
               <th>Score</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +36,9 @@ const Leaderboard = () => {
                 <td>{leader.id || idx + 1}</td>
                 <td className="fw-semibold text-dark">{leader.name || '-'}</td>
                 <td className="fw-bold">{leader.score || '-'}</td>
+                <td>
+                  <button className="btn btn-outline-primary btn-sm me-2">View</button>
+                </td>
               </tr>
             ))}
           </tbody>

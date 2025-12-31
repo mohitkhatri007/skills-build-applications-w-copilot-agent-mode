@@ -18,6 +18,7 @@ const Users = () => {
   }, [API_URL]);
 
   return (
+                <th>Actions</th>
     <Card className="mb-4 shadow">
       <Card.Body>
         <Card.Title as="h2" className="mb-3 text-warning fw-bold">Users</Card.Title>
@@ -26,6 +27,10 @@ const Users = () => {
             <tr>
               <th>#</th>
               <th>Name</th>
+                  <td>
+                    <button className="btn btn-outline-warning btn-sm me-2">Edit</button>
+                    <button className="btn btn-outline-danger btn-sm">Delete</button>
+                  </td>
               <th>Email</th>
             </tr>
           </thead>

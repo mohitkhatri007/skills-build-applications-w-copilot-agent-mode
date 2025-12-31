@@ -1,4 +1,6 @@
-
+import React, { useEffect, useState } from 'react';
+import Table from 'react-bootstrap/Table';
+import Card from 'react-bootstrap/Card';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
@@ -16,6 +18,7 @@ const Teams = () => {
   }, [API_URL]);
 
   return (
+                <th>Actions</th>
     <Card className="mb-4 shadow">
       <Card.Body>
         <Card.Title as="h2" className="mb-3 text-info fw-bold">Teams</Card.Title>
@@ -24,6 +27,10 @@ const Teams = () => {
             <tr>
               <th>#</th>
               <th>Name</th>
+                  <td>
+                    <button className="btn btn-outline-info btn-sm me-2">Edit</button>
+                    <button className="btn btn-outline-danger btn-sm">Delete</button>
+                  </td>
               <th>Members</th>
             </tr>
           </thead>
