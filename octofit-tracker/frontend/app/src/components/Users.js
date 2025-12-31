@@ -1,4 +1,6 @@
 
+
+import React, { useEffect, useState } from 'react';
 import { Table, Card } from 'react-bootstrap';
 
 const Users = () => {
@@ -6,7 +8,7 @@ const Users = () => {
   const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/users/`;
 
   useEffect(() => {
-    console.log('Fetching from:', endpoint);
+    console.log('Users API endpoint:', endpoint);
     fetch(endpoint)
       .then(res => res.json())
       .then(data => {
@@ -18,11 +20,11 @@ const Users = () => {
   }, [endpoint]);
 
   return (
-    <Card className="mb-4">
+    <Card className="mb-4 shadow">
       <Card.Body>
-        <Card.Title as="h2" className="mb-3">Users</Card.Title>
-        <Table striped bordered hover responsive>
-          <thead>
+        <Card.Title as="h2" className="mb-3 text-warning fw-bold">Users</Card.Title>
+        <Table striped bordered hover responsive className="align-middle">
+          <thead className="table-warning">
             <tr>
               <th>#</th>
               <th>Name</th>
@@ -33,7 +35,7 @@ const Users = () => {
             {users.map((user, idx) => (
               <tr key={user.id || idx}>
                 <td>{user.id || idx + 1}</td>
-                <td>{user.name || '-'}</td>
+                <td className="fw-semibold text-dark">{user.name || '-'}</td>
                 <td>{user.email || '-'}</td>
               </tr>
             ))}

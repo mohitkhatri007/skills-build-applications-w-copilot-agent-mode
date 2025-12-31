@@ -1,4 +1,6 @@
 
+
+import React, { useEffect, useState } from 'react';
 import { Table, Card } from 'react-bootstrap';
 
 const Activities = () => {
@@ -6,7 +8,7 @@ const Activities = () => {
   const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
 
   useEffect(() => {
-    console.log('Fetching from:', endpoint);
+    console.log('Activities API endpoint:', endpoint);
     fetch(endpoint)
       .then(res => res.json())
       .then(data => {
@@ -18,11 +20,11 @@ const Activities = () => {
   }, [endpoint]);
 
   return (
-    <Card className="mb-4">
+    <Card className="mb-4 shadow">
       <Card.Body>
-        <Card.Title as="h2" className="mb-3">Activities</Card.Title>
-        <Table striped bordered hover responsive>
-          <thead>
+        <Card.Title as="h2" className="mb-3 text-primary fw-bold">Activities</Card.Title>
+        <Table striped bordered hover responsive className="align-middle">
+          <thead className="table-primary">
             <tr>
               <th>#</th>
               <th>Name</th>
@@ -33,7 +35,7 @@ const Activities = () => {
             {activities.map((activity, idx) => (
               <tr key={activity.id || idx}>
                 <td>{activity.id || idx + 1}</td>
-                <td>{activity.name || '-'}</td>
+                <td className="fw-semibold text-dark">{activity.name || '-'}</td>
                 <td>{activity.description || '-'}</td>
               </tr>
             ))}

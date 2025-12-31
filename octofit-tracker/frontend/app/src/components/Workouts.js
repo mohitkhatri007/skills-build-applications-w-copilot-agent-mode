@@ -1,4 +1,6 @@
 
+
+import React, { useEffect, useState } from 'react';
 import { Table, Card } from 'react-bootstrap';
 
 const Workouts = () => {
@@ -6,7 +8,7 @@ const Workouts = () => {
   const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`;
 
   useEffect(() => {
-    console.log('Fetching from:', endpoint);
+    console.log('Workouts API endpoint:', endpoint);
     fetch(endpoint)
       .then(res => res.json())
       .then(data => {
@@ -18,11 +20,11 @@ const Workouts = () => {
   }, [endpoint]);
 
   return (
-    <Card className="mb-4">
+    <Card className="mb-4 shadow">
       <Card.Body>
-        <Card.Title as="h2" className="mb-3">Workouts</Card.Title>
-        <Table striped bordered hover responsive>
-          <thead>
+        <Card.Title as="h2" className="mb-3 text-danger fw-bold">Workouts</Card.Title>
+        <Table striped bordered hover responsive className="align-middle">
+          <thead className="table-danger">
             <tr>
               <th>#</th>
               <th>Name</th>
@@ -34,7 +36,7 @@ const Workouts = () => {
             {workouts.map((workout, idx) => (
               <tr key={workout.id || idx}>
                 <td>{workout.id || idx + 1}</td>
-                <td>{workout.name || '-'}</td>
+                <td className="fw-semibold text-dark">{workout.name || '-'}</td>
                 <td>{workout.type || '-'}</td>
                 <td>{workout.duration || '-'}</td>
               </tr>

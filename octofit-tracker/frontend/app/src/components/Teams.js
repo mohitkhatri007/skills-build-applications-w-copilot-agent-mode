@@ -1,4 +1,6 @@
 
+
+import React, { useEffect, useState } from 'react';
 import { Table, Card } from 'react-bootstrap';
 
 const Teams = () => {
@@ -6,7 +8,7 @@ const Teams = () => {
   const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
 
   useEffect(() => {
-    console.log('Fetching from:', endpoint);
+    console.log('Teams API endpoint:', endpoint);
     fetch(endpoint)
       .then(res => res.json())
       .then(data => {
@@ -18,11 +20,11 @@ const Teams = () => {
   }, [endpoint]);
 
   return (
-    <Card className="mb-4">
+    <Card className="mb-4 shadow">
       <Card.Body>
-        <Card.Title as="h2" className="mb-3">Teams</Card.Title>
-        <Table striped bordered hover responsive>
-          <thead>
+        <Card.Title as="h2" className="mb-3 text-info fw-bold">Teams</Card.Title>
+        <Table striped bordered hover responsive className="align-middle">
+          <thead className="table-info">
             <tr>
               <th>#</th>
               <th>Name</th>
@@ -33,7 +35,7 @@ const Teams = () => {
             {teams.map((team, idx) => (
               <tr key={team.id || idx}>
                 <td>{team.id || idx + 1}</td>
-                <td>{team.name || '-'}</td>
+                <td className="fw-semibold text-dark">{team.name || '-'}</td>
                 <td>{Array.isArray(team.members) ? team.members.join(', ') : '-'}</td>
               </tr>
             ))}

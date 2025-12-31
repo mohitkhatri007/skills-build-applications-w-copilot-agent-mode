@@ -1,4 +1,6 @@
 
+
+import React, { useEffect, useState } from 'react';
 import { Table, Card } from 'react-bootstrap';
 
 const Leaderboard = () => {
@@ -6,7 +8,7 @@ const Leaderboard = () => {
   const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
 
   useEffect(() => {
-    console.log('Fetching from:', endpoint);
+    console.log('Leaderboard API endpoint:', endpoint);
     fetch(endpoint)
       .then(res => res.json())
       .then(data => {
@@ -18,11 +20,11 @@ const Leaderboard = () => {
   }, [endpoint]);
 
   return (
-    <Card className="mb-4">
+    <Card className="mb-4 shadow">
       <Card.Body>
-        <Card.Title as="h2" className="mb-3">Leaderboard</Card.Title>
-        <Table striped bordered hover responsive>
-          <thead>
+        <Card.Title as="h2" className="mb-3 text-success fw-bold">Leaderboard</Card.Title>
+        <Table striped bordered hover responsive className="align-middle">
+          <thead className="table-success">
             <tr>
               <th>#</th>
               <th>Name</th>
@@ -33,8 +35,8 @@ const Leaderboard = () => {
             {leaders.map((leader, idx) => (
               <tr key={leader.id || idx}>
                 <td>{leader.id || idx + 1}</td>
-                <td>{leader.name || '-'}</td>
-                <td>{leader.score || '-'}</td>
+                <td className="fw-semibold text-dark">{leader.name || '-'}</td>
+                <td className="fw-bold">{leader.score || '-'}</td>
               </tr>
             ))}
           </tbody>
