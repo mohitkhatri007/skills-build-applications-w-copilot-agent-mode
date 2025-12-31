@@ -2,19 +2,18 @@
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
-  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
+  const API_URL = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
+  console.log('Activities API_URL:', API_URL);
 
   useEffect(() => {
-    console.log('Activities API endpoint:', endpoint);
-    fetch(endpoint)
+    fetch(API_URL)
       .then(res => res.json())
       .then(data => {
-        const results = data.results || data;
-        setActivities(results);
-        console.log('Fetched activities:', results);
+        setActivities(data.results || data);
+        console.log('Fetched activities:', data);
       })
       .catch(err => console.error('Error fetching activities:', err));
-  }, [endpoint]);
+  }, [API_URL]);
 
   return (
     <Card className="mb-4 shadow">

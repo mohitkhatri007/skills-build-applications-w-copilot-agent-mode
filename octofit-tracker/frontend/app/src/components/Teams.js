@@ -2,19 +2,18 @@
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
-  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
+  const API_URL = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
+  console.log('Teams API_URL:', API_URL);
 
   useEffect(() => {
-    console.log('Teams API endpoint:', endpoint);
-    fetch(endpoint)
+    fetch(API_URL)
       .then(res => res.json())
       .then(data => {
-        const results = data.results || data;
-        setTeams(results);
-        console.log('Fetched teams:', results);
+        setTeams(data.results || data);
+        console.log('Fetched teams:', data);
       })
       .catch(err => console.error('Error fetching teams:', err));
-  }, [endpoint]);
+  }, [API_URL]);
 
   return (
     <Card className="mb-4 shadow">

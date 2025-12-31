@@ -12,6 +12,8 @@ import Workouts from './components/Workouts';
 
 
 function App() {
+  // Ensure environment variable is available for all components
+  console.log("REACT_APP_CODESPACE_NAME:", process.env.REACT_APP_CODESPACE_NAME);
   return (
     <div className="App">
       <Navbar bg="primary" variant="dark" expand="lg" className="mb-4 shadow">

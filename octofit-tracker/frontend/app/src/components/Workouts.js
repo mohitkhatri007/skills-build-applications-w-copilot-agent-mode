@@ -2,19 +2,18 @@
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
-  const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`;
+  const API_URL = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`;
+  console.log('Workouts API_URL:', API_URL);
 
   useEffect(() => {
-    console.log('Workouts API endpoint:', endpoint);
-    fetch(endpoint)
+    fetch(API_URL)
       .then(res => res.json())
       .then(data => {
-        const results = data.results || data;
-        setWorkouts(results);
-        console.log('Fetched workouts:', results);
+        setWorkouts(data.results || data);
+        console.log('Fetched workouts:', data);
       })
       .catch(err => console.error('Error fetching workouts:', err));
-  }, [endpoint]);
+  }, [API_URL]);
 
   return (
     <Card className="mb-4 shadow">
