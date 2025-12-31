@@ -1,7 +1,6 @@
-
-
 import React, { useEffect, useState } from 'react';
-import { Table, Card } from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
+import Card from 'react-bootstrap/Card';
 
 const Leaderboard = () => {
   const [leaders, setLeaders] = useState([]);
